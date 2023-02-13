@@ -6,43 +6,43 @@ import {
   getEventsFilterByCategories,
   handleEventList,
   handleSelectedEventList,
-  METHOD_TYPE
+  METHOD_TYPE,
 } from "./utils";
-import { ResponseGenerator } from "../../constants/event";
 import { EventCategory } from "../../components/event-category";
 import { EmptySearch } from "./empty-search";
 import { EventHeader } from "./header";
 import "../../assets/css/event.css";
+import { Event, ResponseGenerator, EventState } from "../../constants/event";
 
 const EventLayout = () => {
-  const [events, setEvents] = useState({
+  const [events, setEvents] = useState<EventState>({
     byCatagory: {},
-    list: []
+    list: [],
   });
-  const [selectedEvents, setSelectedEvents] = useState({
+  const [selectedEvents, setSelectedEvents] = useState<EventState>({
     byCatagory: {},
-    list: []
+    list: [],
   });
 
-  const getSearchedEvents = (searchKey) => {
+  const getSearchedEvents = (searchKey: string) => {
     const filterList = events.list.filter(
-      (item) =>
+      (item: Event) =>
         item.event_name.toLowerCase().indexOf(searchKey.toLowerCase()) > -1
     );
     if (filterList.length) {
       setEvents({
         list: events.list,
-        byCatagory: getEventsFilterByCategories(filterList)
+        byCatagory: getEventsFilterByCategories(filterList),
       });
     } else {
       setEvents({
         list: events.list,
-        byCatagory: getEventsFilterByCategories([])
+        byCatagory: getEventsFilterByCategories([]),
       });
     }
   };
 
-  const addIntoSelectedEvents = (EVENT) => {
+  const addIntoSelectedEvents = (EVENT: Event) => {
     let updatedSelectedEventList = handleSelectedEventList(
       EVENT,
       selectedEvents.list,
@@ -59,7 +59,7 @@ const EventLayout = () => {
     );
   };
 
-  const removeFromSelectedEvents = (EVENT) => {
+  const removeFromSelectedEvents = (EVENT: Event) => {
     let updatedSelectedEventList = handleSelectedEventList(
       EVENT,
       selectedEvents.list,
@@ -82,11 +82,11 @@ const EventLayout = () => {
     const url = config.server.eventMockServiceEndPoint;
     axios
       .get(url)
-      .then((response: ResponseGenerator) => {
+      .then((response: ResponseGenerator<Event[]>) => {
         console.log(getEventsFilterByCategories([...response.data]));
         setEvents({
           byCatagory: getEventsFilterByCategories([...response.data]),
-          list: response.data
+          list: response.data,
         });
       })
       .catch((err) => {});
@@ -116,7 +116,11 @@ const EventLayout = () => {
           )}
         </div>
         <div className="section right">
-          <EventHeader enableSearch={false} headerText={"Selected Events"} />
+          <EventHeader
+            enableSearch={false}
+            headerText={"Selected Events"}
+            onSearch={() => {}}
+          />
           {Object.keys(selectedEvents.byCatagory).length
             ? Object.keys(selectedEvents.byCatagory).map((item) => {
                 return (

@@ -19,3 +19,8 @@ export interface Event {
   closed?: boolean;
   time?: string;
 }
+
+export interface EventState {
+  byCatagory: any;
+  list: Event[];
+}

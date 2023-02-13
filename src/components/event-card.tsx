@@ -1,4 +1,14 @@
-export const EventCard = ({ event, onSelect, onRemove }:any): any => {
+import { Event } from "../constants/event";
+interface Props {
+  event: Event;
+  onSelect: (arg: Event) => void;
+  onRemove: (arg: Event) => void;
+}
+export const EventCard: React.FC<Props> = ({
+  event,
+  onSelect,
+  onRemove,
+}: Props) => {
   console.log("E-CARD", event);
   return (
     <div>

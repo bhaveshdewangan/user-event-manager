@@ -134,7 +134,7 @@ const handleEventList = (
   currentEventList: Event[],
   stateSetterFn: any,
   type: METHOD_TYPE,
-  newSelectedEventList: Event[]
+  newSelectedEventList: Event[] | any
 ) => {
   switch (type) {
     case METHOD_TYPE.ADD:

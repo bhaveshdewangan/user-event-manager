@@ -1,8 +1,18 @@
 import "../../assets/css/event-header.css";
 import SearchIcon from "../../assets/images/search-icon.png";
-export const EventHeader = ({ enableSearch, headerText, onSearch }) => {
+interface Props {
+  enableSearch: boolean;
+  headerText: string;
+  onSearch: (arg: string) => void;
+}
+
+export const EventHeader: React.FC<Props> = ({
+  enableSearch,
+  headerText,
+  onSearch,
+}: Props) => {
   const clearInput = () => {
-    const inputEle = document.querySelector("#search");
+    const inputEle: any = document.querySelector("#search");
     if (inputEle && inputEle.value.length) {
       inputEle.value = "";
       onSearch("");
@@ -19,9 +29,9 @@ export const EventHeader = ({ enableSearch, headerText, onSearch }) => {
             placeholder="Search event here"
             type="text"
             id="search"
-            onKeyUp={(e) => onSearch(e.target.value)}
+            onKeyUp={(e: any) => onSearch(e.target.value)}
           ></input>
-          <span class="cross" onClick={() => clearInput()}>
+          <span className="cross" onClick={() => clearInput()}>
             X
           </span>
         </div>
