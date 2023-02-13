@@ -1,0 +1,17 @@
+.category-card {
+  max-width: 100%;
+  height: auto;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 2px;
+  gap: 10px;
+}
+
+.category-header {
+  margin: 15px 0 15px 5px;
+}
+
+.category-items {
+  display: flex;
+  flex-wrap: wrap;
+}

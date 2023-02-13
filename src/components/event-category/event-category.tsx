@@ -1,5 +1,6 @@
-import { EventCard } from "./event-card";
-import { Event } from "../constants/event";
+import { EventCard } from "../event-card/event-card";
+import { Event } from "../../constants/event";
+import "./event-category.css";
 interface Props {
   title: string;
   category: Event[];

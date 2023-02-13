@@ -1,6 +1,7 @@
-export const EmptySearch = () => {
+import "./info.css";
+export const Info = () => {
   return (
-    <div className="category-card not-found">
+    <div className="info-card not-found">
       <div
         style={{ fontSize: "18px", margin: "8px 5px 4px 5px" }}
         className="err-header"

@@ -1,0 +1,17 @@
+.not-found {
+  margin: 50px 10px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #c62828;
+  color: white;
+  border: 1px solid;
+}
+
+.info-card {
+  max-width: 100%;
+  height: auto;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 4px;
+  gap: 10px;
+}

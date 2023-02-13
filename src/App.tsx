@@ -1,13 +1,10 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { EventLayout } from "./pages/event/layout";
-
+import "./App.css";
+import { EventLayout } from "./pages/event/layout/layout";
 
 function App() {
   return (
     <div className="App">
-              <EventLayout />
+      <EventLayout />
 
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

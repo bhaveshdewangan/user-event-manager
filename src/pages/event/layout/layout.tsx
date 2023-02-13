@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import config from "../../config/config.json";
+import config from "../../../config/config.json";
+import "./layout.css";
 import {
   debounce,
   getEventsFilterByCategories,
   handleEventList,
   handleSelectedEventList,
   METHOD_TYPE,
-} from "./utils";
-import { EventCategory } from "../../components/event-category";
-import { EmptySearch } from "./empty-search";
-import { EventHeader } from "./header";
-import "../../assets/css/event.css";
-import { Event, ResponseGenerator, EventState } from "../../constants/event";
+} from "../utils";
+import { EventCategory } from "../../../components/event-category/event-category";
+import { Info } from "../info/info";
+import { EventHeader } from "../header/header";
+// import "../../assets/css/event.css";
+import { Event, ResponseGenerator, EventState } from "../../../constants/event";
 
 const EventLayout = () => {
   const [events, setEvents] = useState<EventState>({
@@ -112,7 +113,7 @@ const EventLayout = () => {
               );
             })
           ) : (
-            <EmptySearch />
+            <Info />
           )}
         </div>
         <div className="section right">

@@ -1,0 +1,17 @@
+.event-container {
+  display: flex;
+  gap: 10px;
+}
+.section {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: auto;
+}
+
+.left {
+  width: 60%;
+}
+
+.right {
+  width: 40%;
+}

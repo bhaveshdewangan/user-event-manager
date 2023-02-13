@@ -1,5 +1,5 @@
-import "../../assets/css/event-header.css";
-import SearchIcon from "../../assets/images/search-icon.png";
+import "./header.css";
+import SearchIcon from "../../../assets/images/search-icon.png";
 interface Props {
   enableSearch: boolean;
   headerText: string;

@@ -1,4 +1,5 @@
-import { Event } from "../constants/event";
+import { Event } from "../../constants/event";
+import "./event-card.css";
 interface Props {
   event: Event;
   onSelect: (arg: Event) => void;
