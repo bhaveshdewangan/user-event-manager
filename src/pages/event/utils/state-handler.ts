@@ -1,21 +1,7 @@
-import { Event } from "../../constants/event";
+import { METHOD_TYPE, Event } from "../constants/types-enums";
+import { getEventsFilterByCategories } from "./response-modifier";
+
 const MAX_EVENT_SELECTION_ALLOWED = 3;
-const enum METHOD_TYPE {
-  ADD = "ADD",
-  REMOVE = "REMOVE",
-}
-const getEventsFilterByCategories = (events: Event[]) => {
-  let results: any = {};
-  events.map((item: Event) => {
-    let key = item.event_category.split(" ").join("_");
-    if (results[key] !== undefined) {
-      results[key] = [...results[key], modifyEventInfo(item)];
-    } else {
-      results[key] = [modifyEventInfo(item)];
-    }
-  });
-  return results;
-};
 
 function debounce(cbFn: (k: string) => void, delay: number) {
   let timer: ReturnType<typeof setTimeout>;
@@ -26,78 +12,6 @@ function debounce(cbFn: (k: string) => void, delay: number) {
     }, delay);
   };
 }
-
-const modifyEventInfo = (event: Event) => {
-  event.start_time = getTimestamp(event.start_time);
-  event.end_time = getTimestamp(event.end_time);
-  event.is_selected =
-    event.is_selected == undefined ? false : event.is_selected;
-  event.is_available =
-    event.is_available == undefined ? true : event.is_available;
-  event.closed = event.closed == undefined ? false : event.closed;
-  event.time = getEventTime(event.start_time, event.end_time);
-  return event;
-};
-
-const getEventTime = (start: string, end: string) => {
-  const startDate = {
-    date: new Date(Number(start)),
-    dayOfMonth() {
-      return this.date.getDate();
-    },
-    month() {
-      return this.date.getMonth();
-    },
-    year() {
-      return this.date.getFullYear();
-    },
-    time() {
-      return this.date.toLocaleString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      });
-    },
-  };
-  const endDate = {
-    date: new Date(Number(end)),
-    dayOfMonth() {
-      return this.date.getDate();
-    },
-    month() {
-      return this.date.getMonth();
-    },
-    year() {
-      return this.date.getFullYear();
-    },
-    time() {
-      return this.date.toLocaleString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      });
-    },
-  };
-
-  return `${startDate.dayOfMonth()} ${
-    MONTHS[startDate.month()]
-  } ${startDate.time()} - ${endDate.time()}`;
-};
-
-const MONTHS = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
 
 const areOverlapping = (event: Event, selectedEvent: Event) => {
   if (event.start_time < selectedEvent.start_time) {
@@ -202,13 +116,4 @@ const handleSelectedEventList = (
   }
 };
 
-const getTimestamp = (date: string) => new Date(date).getTime();
-
-export {
-  getEventsFilterByCategories,
-  debounce,
-  MAX_EVENT_SELECTION_ALLOWED,
-  METHOD_TYPE,
-  handleEventList,
-  handleSelectedEventList,
-};
+export { handleSelectedEventList, handleEventList, debounce };

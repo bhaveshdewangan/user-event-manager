@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import config from "../../../config/config.json";
+import config from "../../../../config/config.json";
 import "./layout.css";
+import { getEventsFilterByCategories } from "../../utils/response-modifier";
+import {
+  METHOD_TYPE,
+  Event,
+  ResponseGenerator,
+  EventState,
+} from "../../constants/types-enums";
 import {
   debounce,
-  getEventsFilterByCategories,
   handleEventList,
   handleSelectedEventList,
-  METHOD_TYPE,
-} from "../utils";
-import { EventCategory } from "../../../components/event-category/event-category";
+} from "../../utils/state-handler";
+
+import { EventCategory } from "../../../../shared-components/event-category/event-category";
 import { Info } from "../info/info";
 import { EventHeader } from "../header/header";
-// import "../../assets/css/event.css";
-import { Event, ResponseGenerator, EventState } from "../../../constants/event";
 
 const EventLayout = () => {
   const [events, setEvents] = useState<EventState>({

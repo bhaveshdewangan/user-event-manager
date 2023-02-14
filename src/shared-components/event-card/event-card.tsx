@@ -1,4 +1,4 @@
-import { Event } from "../../constants/event";
+import { Event } from "../../pages/event/constants/types-enums";
 import "./event-card.css";
 interface Props {
   event: Event;

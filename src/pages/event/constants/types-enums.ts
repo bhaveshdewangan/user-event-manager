@@ -24,3 +24,8 @@ export interface EventState {
   byCatagory: any;
   list: Event[];
 }
+
+export const enum METHOD_TYPE {
+  ADD = "ADD",
+  REMOVE = "REMOVE",
+}

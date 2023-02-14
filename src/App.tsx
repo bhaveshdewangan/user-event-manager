@@ -1,5 +1,5 @@
 import "./App.css";
-import { EventLayout } from "./pages/event/layout/layout";
+import { EventLayout } from "./pages/event/components/layout/layout";
 
 function App() {
   return (
