@@ -1,5 +1,5 @@
 import { Event } from "../../pages/event/constants/types-enums";
-import "./event-card.css";
+import "./event-card.scss";
 interface Props {
   event: Event;
   onSelect: (arg: Event) => void;
@@ -10,7 +10,6 @@ export const EventCard: React.FC<Props> = ({
   onSelect,
   onRemove,
 }: Props) => {
-  console.log("E-CARD", event);
   return (
     <div>
       <div

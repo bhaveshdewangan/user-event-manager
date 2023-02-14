@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../../../config/config.json";
-import "./layout.css";
+import "./layout.scss";
 import { getEventsFilterByCategories } from "../../utils/response-modifier";
 import {
   METHOD_TYPE,
   Event,
   ResponseGenerator,
   EventState,
+  EVENTS_STATUS,
 } from "../../constants/types-enums";
 import {
   debounce,
@@ -28,6 +29,9 @@ const EventLayout = () => {
     byCatagory: {},
     list: [],
   });
+  const [eventStatus, setEventsStatus] = useState<EVENTS_STATUS>(
+    EVENTS_STATUS.LOADING
+  );
 
   const getSearchedEvents = (searchKey: string) => {
     const filterList = events.list.filter(
@@ -88,14 +92,18 @@ const EventLayout = () => {
     axios
       .get(url)
       .then((response: ResponseGenerator<Event[]>) => {
-        console.log(getEventsFilterByCategories([...response.data]));
+        setEventsStatus(EVENTS_STATUS.SUCCESS);
+
         setEvents({
           byCatagory: getEventsFilterByCategories([...response.data]),
           list: response.data,
         });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setEventsStatus(EVENTS_STATUS.FAILURE);
+      });
   }, []);
+
   return (
     <>
       <div className="event-container">
@@ -105,19 +113,27 @@ const EventLayout = () => {
             headerText={"All Events"}
             onSearch={filterEventByName}
           />
-          {Object.keys(events.byCatagory).length ? (
-            Object.keys(events.byCatagory).map((item) => {
-              return (
-                <EventCategory
-                  key={item}
-                  category={events.byCatagory[item]}
-                  title={item}
-                  onEventSelect={addIntoSelectedEvents}
-                />
-              );
-            })
+          {eventStatus == EVENTS_STATUS.LOADING ||
+          eventStatus == EVENTS_STATUS.FAILURE ? (
+            <Info type={eventStatus} />
           ) : (
-            <Info />
+            <>
+              {Object.keys(events.byCatagory).length &&
+              eventStatus == EVENTS_STATUS.SUCCESS ? (
+                Object.keys(events.byCatagory).map((item) => {
+                  return (
+                    <EventCategory
+                      key={item}
+                      category={events.byCatagory[item]}
+                      title={item}
+                      onEventSelect={addIntoSelectedEvents}
+                    />
+                  );
+                })
+              ) : (
+                <Info type={EVENTS_STATUS.NO_RESULT} />
+              )}
+            </>
           )}
         </div>
         <div className="section right">

@@ -1,0 +1,20 @@
+@import "../../../../assets/sassStyles/variables";
+
+.event-container {
+  display: flex;
+  gap: 10px;
+
+  .section {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: auto;
+  }
+
+  .left {
+    width: $all-events-section-width;
+  }
+
+  .right {
+    width: $selected-events-section-width;
+  }
+}

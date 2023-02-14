@@ -1,0 +1,83 @@
+@import "../../assets/sassStyles/variables";
+
+.card {
+  width: 135px;
+  height: auto;
+  border-radius: 5px;
+  display: flex;
+  margin: 0 5px 10px 5px;
+}
+
+.card-active {
+  background-color: black;
+  color: white;
+}
+
+.card-inactive {
+  background-color: #bcbcbc;
+  color: black;
+}
+
+.card-left-section {
+  min-width: 22%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.divider-active {
+  margin: 10px 3px 10px 0;
+  border-right: 2px solid $divider-color;
+}
+
+.divider-inactive {
+  margin: 10px 3px 10px 0;
+  border-right: 2px solid #000;
+}
+
+.card-right-section {
+  padding: 0 5px;
+  margin-top: 10px;
+  width: 70%;
+  position: relative;
+
+  .card-header {
+    font-size: 11px;
+    margin-bottom: 3px;
+  }
+
+  .card-content {
+    font-size: 7px;
+  }
+
+  .btn {
+    font-size: 8px;
+    width: 85%;
+    color: black;
+    text-align: center;
+    position: absolute;
+    bottom: 20%;
+    border-radius: 5px;
+  }
+
+  .select {
+    color: #ffffff;
+    background-color: $btn-bg-select;
+    border: 1px solid $btn-bg-select;
+  }
+
+  .remove {
+    color: #ffffff;
+    background-color: $btn-bg-remove;
+    border: 1px solid $btn-bg-remove;
+  }
+
+  .inactive {
+    color: #000;
+    background-color: $btn-bg-inactive;
+    border: 1px solid $btn-bg-inactive;
+  }
+}

@@ -29,3 +29,30 @@ export const enum METHOD_TYPE {
   ADD = "ADD",
   REMOVE = "REMOVE",
 }
+
+export const enum EVENTS_STATUS {
+  LOADING = "LOADING",
+  SUCCESS = "SUCCESS",
+  FAILURE = "FAILURE",
+  NO_RESULT = "NO_RESULT",
+}
+
+export const INFO_MESSAGE = {
+  LOADING: {
+    text: "Hang On!!",
+    subText: "data is loading...",
+  },
+  FAILURE: {
+    text: "There seems to be technical issue",
+    subText: "please try again.",
+  },
+  NO_RESULT: {
+    text: "No Records Found!!",
+    subText: "please try with some other keywords.",
+  },
+};
+
+export type Message = {
+  text: string;
+  subText: string;
+};

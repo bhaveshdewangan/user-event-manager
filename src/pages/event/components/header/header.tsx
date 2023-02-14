@@ -1,4 +1,4 @@
-import "./header.css";
+import "./header.scss";
 import SearchIcon from "../../../../assets/images/search-icon.png";
 interface Props {
   enableSearch: boolean;

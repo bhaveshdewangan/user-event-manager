@@ -1,6 +1,6 @@
 import { EventCard } from "../event-card/event-card";
 import { Event } from "../../pages/event/constants/types-enums";
-import "./event-category.css";
+import "./event-category.scss";
 
 interface Props {
   title: string;

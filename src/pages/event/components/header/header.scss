@@ -18,25 +18,25 @@
   padding: 3px;
   width: 210px;
   height: 20px;
-}
 
-.cross {
-  position: absolute;
-  right: 5px;
-  opacity: 0.6;
-}
+  .cross {
+    position: absolute;
+    right: 5px;
+    opacity: 0.6;
+  }
 
-.icon {
-  opacity: 0.6;
-  height: 20px;
-  width: 20px;
-  padding-right: 3px;
-}
+  .icon {
+    opacity: 0.6;
+    height: 20px;
+    width: 20px;
+    padding-right: 3px;
+  }
 
-.text-area {
-  border: none;
-}
+  .text-area {
+    border: none;
+  }
 
-.text-area:focus {
-  outline: none;
+  .text-area:focus {
+    outline: none;
+  }
 }
