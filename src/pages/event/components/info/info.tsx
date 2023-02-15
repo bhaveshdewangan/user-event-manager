@@ -28,10 +28,7 @@ export const Info: React.FC<Props> = ({ type }: Props) => {
 
   return (
     <div className={`info-card not-found ${classNames}`}>
-      <div
-        style={{ fontSize: "18px", margin: "8px 5px 4px 5px" }}
-        className="err-header"
-      >
+      <div style={{ fontSize: "18px", margin: "8px 5px 4px 5px" }}>
         {infoMessage.text}
       </div>
       <div style={{ fontSize: "12px", marginBottom: "10px" }}>

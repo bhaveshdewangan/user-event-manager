@@ -116,4 +116,9 @@ const handleSelectedEventList = (
   }
 };
 
-export { handleSelectedEventList, handleEventList, debounce };
+export {
+  handleSelectedEventList,
+  handleEventList,
+  debounce,
+  MAX_EVENT_SELECTION_ALLOWED,
+};

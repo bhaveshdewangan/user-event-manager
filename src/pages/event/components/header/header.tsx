@@ -1,7 +1,10 @@
 import "./header.scss";
+import "../info/info.scss";
 import SearchIcon from "../../../../assets/images/search-icon.png";
+import { MAX_EVENT_SELECTION_ALLOWED } from "../../utils/state-handler";
 interface Props {
-  enableSearch: boolean;
+  enableSearch?: boolean;
+  enableInfo?: boolean;
   headerText: string;
   onSearch: (arg: string) => void;
 }
@@ -9,6 +12,7 @@ interface Props {
 export const EventHeader: React.FC<Props> = ({
   enableSearch,
   headerText,
+  enableInfo,
   onSearch,
 }: Props) => {
   const clearInput = () => {
@@ -34,6 +38,11 @@ export const EventHeader: React.FC<Props> = ({
           <span className="cross" onClick={() => clearInput()}>
             X
           </span>
+        </div>
+      )}
+      {enableInfo && (
+        <div className={`info-bar info-theme`}>
+          Max Events: {MAX_EVENT_SELECTION_ALLOWED}
         </div>
       )}
     </div>

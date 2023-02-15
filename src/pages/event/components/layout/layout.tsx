@@ -89,19 +89,21 @@ const EventLayout = () => {
 
   useEffect(() => {
     const url = config.server.eventMockServiceEndPoint;
-    axios
-      .get(url)
-      .then((response: ResponseGenerator<Event[]>) => {
-        setEventsStatus(EVENTS_STATUS.SUCCESS);
+    setTimeout(() => {
+      axios
+        .get(url)
+        .then((response: ResponseGenerator<Event[]>) => {
+          setEventsStatus(EVENTS_STATUS.SUCCESS);
 
-        setEvents({
-          byCatagory: getEventsFilterByCategories([...response.data]),
-          list: response.data,
+          setEvents({
+            byCatagory: getEventsFilterByCategories([...response.data]),
+            list: response.data,
+          });
+        })
+        .catch((err) => {
+          setEventsStatus(EVENTS_STATUS.FAILURE);
         });
-      })
-      .catch((err) => {
-        setEventsStatus(EVENTS_STATUS.FAILURE);
-      });
+    }, 2000);
   }, []);
 
   return (
@@ -110,6 +112,7 @@ const EventLayout = () => {
         <div className="section left">
           <EventHeader
             enableSearch={true}
+            enableInfo={false}
             headerText={"All Events"}
             onSearch={filterEventByName}
           />
@@ -139,6 +142,7 @@ const EventLayout = () => {
         <div className="section right">
           <EventHeader
             enableSearch={false}
+            enableInfo={true}
             headerText={"Selected Events"}
             onSearch={() => {}}
           />

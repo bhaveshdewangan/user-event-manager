@@ -1,3 +1,5 @@
+@import "../../../../assets/sassStyles/variables";
+
 .event-header {
   display: flex;
   justify-content: space-between;
@@ -39,4 +41,16 @@
   .text-area:focus {
     outline: none;
   }
+}
+
+.info-theme {
+  background-color: $card-bg-info;
+}
+
+.info-bar {
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  font-size: 16px;
+  color: white;
 }
