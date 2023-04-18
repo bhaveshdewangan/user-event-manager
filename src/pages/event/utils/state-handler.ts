@@ -48,7 +48,9 @@ const handleEventList = (
   currentEventList: Event[],
   stateSetterFn: any,
   type: METHOD_TYPE,
-  newSelectedEventList: Event[] | any
+  newSelectedEventList: Event[] | any,
+  getSearchedEvents: (arg: string) => void,
+  searchKey: string
 ) => {
   switch (type) {
     case METHOD_TYPE.ADD:
@@ -62,6 +64,7 @@ const handleEventList = (
           byCatagory: getEventsFilterByCategories(newList),
         });
       }
+      getSearchedEvents(searchKey);
       break;
     case METHOD_TYPE.REMOVE:
       let newEventList = [...currentEventList];

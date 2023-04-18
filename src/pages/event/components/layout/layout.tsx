@@ -33,20 +33,30 @@ const EventLayout = () => {
     EVENTS_STATUS.LOADING
   );
 
-  const getSearchedEvents = (searchKey: string) => {
-    const filterList = events.list.filter(
-      (item: Event) =>
-        item.event_name.toLowerCase().indexOf(searchKey.toLowerCase()) > -1
-    );
-    if (filterList.length) {
-      setEvents({
-        list: events.list,
-        byCatagory: getEventsFilterByCategories(filterList),
-      });
+  const [searchKey, setSearchKey] = useState("");
+
+  const getSearchedEvents = (key: string) => {
+    setSearchKey(key);
+    if (key.length) {
+      const filterList = events.list.filter(
+        (item: Event) =>
+          item.event_name.toLowerCase().indexOf(key.toLowerCase()) > -1
+      );
+      if (filterList.length) {
+        setEvents({
+          list: events.list,
+          byCatagory: getEventsFilterByCategories(filterList),
+        });
+      } else {
+        setEvents({
+          list: events.list,
+          byCatagory: getEventsFilterByCategories([]),
+        });
+      }
     } else {
       setEvents({
         list: events.list,
-        byCatagory: getEventsFilterByCategories([]),
+        byCatagory: getEventsFilterByCategories(events.list),
       });
     }
   };
@@ -64,7 +74,9 @@ const EventLayout = () => {
       events.list,
       setEvents,
       METHOD_TYPE.REMOVE,
-      updatedSelectedEventList
+      updatedSelectedEventList,
+      getSearchedEvents,
+      searchKey
     );
   };
 
@@ -81,7 +93,9 @@ const EventLayout = () => {
       events.list,
       setEvents,
       METHOD_TYPE.ADD,
-      updatedSelectedEventList
+      updatedSelectedEventList,
+      getSearchedEvents,
+      searchKey
     );
   };
 
